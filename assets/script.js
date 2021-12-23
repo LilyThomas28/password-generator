@@ -91,3 +91,46 @@ function getPasswordLength() {
     }
     console.log("Generated Password: ", generatedPassword, "Password Length: ", generatedPassword.length);
   }
+
+// Set character as valid for each selected set
+function charValidate(testChar) {
+    for (var i = 0; i < testChar.length; i++) {
+      if (alphaLower.indexOf(testChar[i]) !== -1) {
+        validPassword[0] = true;
+      }
+      else if (alphaUpper.indexOf(testChar[i]) !== -1) {
+        validPassword[1] = true;
+      }
+      else if (numeric.indexOf(testChar[i]) !== -1) {
+        validPassword[2] = true;
+      }
+      else {
+        validPassword[3] = true;
+      }
+      
+    }
+  }
+  
+  function generatePassword() {
+  
+    // Add available characters into array
+    var allChar = [alphaLower, alphaUpper, numeric, specChar];
+    console.log("All Characters: ", allChar);
+  
+    if (getPasswordLength() && getPasswordCharSet(allChar)) {
+      console.log("getPasswordLength: ", passwordLength);
+      console.log("Selected character list: ", selectedChars);
+  
+      var valCount = 0;
+      while (validPassword.indexOf(false) !== -1) {
+        // Generate password
+        MakePassword(passwordLength);
+        valCount++;
+        if (valCount > 100) {
+          alert("Fate is not on your side! Please try again.");
+          return "";
+        }
+      }
+      console.log("Generation: ", valCount);
+      return generatedPassword;
+  
