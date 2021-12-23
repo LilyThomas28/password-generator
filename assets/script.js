@@ -1,21 +1,24 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-function generatePassword() {
-  var password = "password";
-  // TODO: add code to generate the password here
+// Variable for password length
+var passwordLength = 0;
 
-  return password;
-}
+// Combined string of characters for password generation
+var selectedChars = "";
 
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+// Password options stored as array, all set true initially
+// lowercase, uppercase, numeric, special
+var options = [true, true, true, true];
 
-  passwordText.value = password;
+// Does the password contain at least one character from the selected character sets
+var validPassword = [false, false, false, false];
 
-}
+// Variable to contain the final generated password
+var generatedPassword = "";
 
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+// Character sets
+var alphaLower = "abcdefghijklmnopqrstuvwxyz";
+var alphaUpper = alphaLower.toUpperCase();
+var numeric = "0123456789";
+var specChar = "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~";   // Space character excluded
